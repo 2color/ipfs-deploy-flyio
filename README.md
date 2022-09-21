@@ -14,7 +14,8 @@ cd ipfs-deploy-flyio
 fly launch --copy-config
 ```
 
-Give the app a name when promoted.
+Give the app a name when promoted. Do not deploy the app yet if asked.
+
 
 ## 3. Create fly volume
 
@@ -22,7 +23,15 @@ Give the app a name when promoted.
 fly volumes create ipfs_data --size 20
 ```
 
-## 4. Get the IPv4 of the container and update it in `ipfs-config.sh`
+## 4. Deploy the app
+
+To ensure that the Kubo node is deployed with the updated configuration,
+
+```sh
+fly deploy
+```
+
+## 5. Get the IPv4 of the container and update it in `ipfs-config.sh`
 
 To get the IPv4 of the container, run the following command:
 
@@ -36,7 +45,7 @@ Open [`ipfs-config.sh`](./ipfs-config.sh), uncomment the last line, and add the 
 ipfs config --json Addresses.AppendAnnounce '["/ip4/[ADD_IP_V4_HERE]/tcp/4001"]'
 ```
 
-## 5. Deploy the app again
+## 6. Deploy the app again
 
 To ensure that the Kubo node is deployed with the updated configuration,
 
@@ -44,7 +53,7 @@ To ensure that the Kubo node is deployed with the updated configuration,
 fly deploy
 ```
 
-## 6. Use fly proxy to interact with the Kubo RPC API
+## 7. Use fly proxy to interact with the Kubo RPC API
 
 To open a proxy to the Kubo node, run the following comand:
 
@@ -55,5 +64,13 @@ fly proxy 5001:5001
 Run the ipfs CLI against the deployed Kubo node:
 
 ```sh
-ipfs id --api /ip4/127.0.0.1/tcp/5001/api
+ipfs id --api /ip4/127.0.0.1/tcp/5001/
+```
+
+## (Optional) Scale the node's container memory
+
+To increase the memory allocated (which by default is 256):
+
+```sh
+fly scale memory 512
 ```
