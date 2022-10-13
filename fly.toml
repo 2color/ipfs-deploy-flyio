@@ -1,11 +1,14 @@
+# fly.toml file generated for my-ipfs-node on 2022-09-21T16:17:52+02:00
+
+app = "my-ipfs-node"
 kill_signal = "SIGINT"
 kill_timeout = 5
 
 [env]
   DATA = "/data"
+  IPFS_LOGGING = ""
   IPFS_PATH = "/data/ipfs"
   IPFS_PROFILE = "server"
-  IPFS_LOGGING=""
 
 [experimental]
   allowed_public_ports = []
@@ -15,45 +18,55 @@ kill_timeout = 5
   destination = "/data/ipfs"
   source = "ipfs_data"
 
+# [[services]]
+#   http_checks = []
+#   internal_port = 8080
+#   protocol = "tcp"
+#   script_checks = []
+
+#   [[services.ports]]
+#     force_https = true
+#     handlers = ["http"]
+#     port = 80
+
+#   [[services.ports]]
+#     handlers = ["http", "tls"]
+#     port = 443
+
+#   [[services.tcp_checks]]
+#     grace_period = "1s"
+#     interval = "15s"
+#     restart_limit = 0
+#     timeout = "2s"
+
 [[services]]
-  http_checks = []
-  internal_port = 8080
+  internal_port = 4001
   protocol = "tcp"
-  script_checks = []
+  [services.concurrency]
+    hard_limit = 1000
+    type = "connections"
 
   [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
+    port = 4001
+
+[[services]]
+  internal_port = 4002
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 1000
+    type = "connections"
 
   [[services.ports]]
     handlers = ["http", "tls"]
     port = 443
 
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-
-  
-[[services]]
-  internal_port = 4001
-  protocol = "tcp"
-
-  [[services.ports]]
-    port = 4001
-
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 1000
-
 [[services]]
   internal_port = 4001
   protocol = "udp"
+  [services.concurrency]
+    hard_limit = 1000
+    type = "connections"
 
   [[services.ports]]
     port = 4001
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 1000

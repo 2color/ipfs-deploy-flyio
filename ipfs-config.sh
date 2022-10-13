@@ -31,4 +31,8 @@ ipfs config Addresses.API --json '["/ip4/0.0.0.0/tcp/5001", "/ip6/::/tcp/5001"]'
 ## Note that it must be 1-1, you can't point at multiple go-ipfs nodes and expect it to work
 # echo "ipfs-config: setting Addresses.AppendAnnounce config"
 # TODO: Enable this line with the IPv4 of the 
-# ipfs config --json Addresses.AppendAnnounce '["/ip4/[ADD_IP_V4_HERE]/tcp/4001"]'
+ipfs config --json Addresses.AppendAnnounce '["/ip4/168.220.93.39/tcp/4001", "/ip4/168.220.93.39/tcp/4002/ws", "/dns4/my-ipfs-node.fly.dev/tcp/443/wss"]'
+
+ipfs config --bool Swarm.Transports.Network.Websocket true
+
+ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/4002/ws", "/ip6/::/tcp/4001", "/ip6/::/tcp/4002/ws", "/ip4/0.0.0.0/udp/4001/quic", "/ip6/::/udp/4001/quic"]'
