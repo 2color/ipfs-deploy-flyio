@@ -55,7 +55,7 @@ fly deploy
 
 ## 7. Use fly proxy to interact with the Kubo RPC API
 
-To open a proxy to the Kubo node, run the following comand:
+To open a proxy to the Kubo node, run the following command:
 
 ```sh
 fly proxy 5001:5001
