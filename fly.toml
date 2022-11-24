@@ -6,7 +6,8 @@ kill_timeout = 5
 
 [env]
   DATA = "/data"
-  IPFS_LOGGING = ""
+  GOLOG_LOG_LEVEL = "info"
+  GOLOG_LOG_FMT = "json"
   IPFS_PATH = "/data/ipfs"
   IPFS_PROFILE = "server"
 
@@ -70,3 +71,13 @@ kill_timeout = 5
 
   [[services.ports]]
     port = 4001
+
+[[services]]
+  internal_port = 4003
+  protocol = "udp"
+  [services.concurrency]
+    hard_limit = 1000
+    type = "connections"
+
+  [[services.ports]]
+    port = 4003

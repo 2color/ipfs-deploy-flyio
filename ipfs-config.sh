@@ -18,7 +18,7 @@
 ## subdomain gateways here with the widely known PL domains
 
 ## Disable hole punchibng
-ipfs config --json Swarm.EnableHolePunching false
+ipfs config --json Swarm.EnableHolePunching true
 ipfs config --json Swarm.RelayClient.Enabled false
 
 ## Bind API to all interfaces so that fly proxy for the Kubo API works
@@ -33,6 +33,12 @@ ipfs config Addresses.API --json '["/ip4/0.0.0.0/tcp/5001", "/ip6/::/tcp/5001"]'
 # TODO: Enable this line with the IPv4 of the 
 ipfs config --json Addresses.AppendAnnounce '["/ip4/168.220.93.39/tcp/4001", "/ip4/168.220.93.39/tcp/4002/ws", "/dns4/my-ipfs-node.fly.dev/tcp/443/wss"]'
 
-ipfs config --bool Swarm.Transports.Network.Websocket true
+#ipfs config --bool Swarm.Transports.Network.Websocket true
+ipfs config Swarm.Transports.Network.Websocket --json true
+ipfs config Swarm.Transports.Network.WebTransport --json true
 
-ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/4002/ws", "/ip6/::/tcp/4001", "/ip6/::/tcp/4002/ws", "/ip4/0.0.0.0/udp/4001/quic", "/ip6/::/udp/4001/quic"]'
+
+ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/4002/ws", "/ip4/0.0.0.0/udp/4003/quic/webtransport", "/ip6/::/tcp/4001", "/ip6/::/tcp/4002/ws", "/ip6/::/udp/4003/quic/webtransport", "/ip4/0.0.0.0/udp/4001/quic", "/ip6/::/udp/4001/quic"]'
+
+ipfs config Bootstrap [] --json
+ipfs config Swarm.ResourceMgr.Enabled --json true
