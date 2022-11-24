@@ -40,5 +40,5 @@ ipfs config Swarm.Transports.Network.WebTransport --json true
 
 ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/4002/ws", "/ip4/0.0.0.0/udp/4003/quic/webtransport", "/ip6/::/tcp/4001", "/ip6/::/tcp/4002/ws", "/ip6/::/udp/4003/quic/webtransport", "/ip4/0.0.0.0/udp/4001/quic", "/ip6/::/udp/4001/quic"]'
 
-ipfs config Bootstrap [] --json
+# ipfs config Bootstrap [] --json
 ipfs config Swarm.ResourceMgr.Enabled --json true
