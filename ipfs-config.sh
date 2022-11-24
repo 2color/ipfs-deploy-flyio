@@ -18,8 +18,8 @@
 ## subdomain gateways here with the widely known PL domains
 
 ## Disable hole punchibng
+ipfs config --json Swarm.RelayClient.Enabled true
 ipfs config --json Swarm.EnableHolePunching true
-ipfs config --json Swarm.RelayClient.Enabled false
 
 ## Bind API to all interfaces so that fly proxy for the Kubo API works
 ipfs config Addresses.API --json '["/ip4/0.0.0.0/tcp/5001", "/ip6/::/tcp/5001"]'
