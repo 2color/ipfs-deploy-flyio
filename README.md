@@ -1,5 +1,7 @@
 # Deploying an IPFS node (Kubo) to fly.io
 
+[Watch video deployment tutorial on YouTube](https://www.youtube.com/watch?v=k1Hcg3B43Q4)
+
 ## 1. Clone this repo and enter the folder
 
 ```sh
